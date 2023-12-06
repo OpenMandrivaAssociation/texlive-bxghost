@@ -1,6 +1,6 @@
 Name:		texlive-bxghost
-Version:	63354
-Release:	2
+Version:	66147
+Release:	1
 Summary:	Ghost insertion for proper xkanjiskip
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/bxghost
