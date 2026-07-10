@@ -1,37 +1,24 @@
-Name:		texlive-bxghost
-Version:	66147
-Release:	1
+%global tl_name bxghost
+%global tl_revision 78793
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.5.1
+Release:	%{tl_revision}.1
 Summary:	Ghost insertion for proper xkanjiskip
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/bxghost
+URL:		https://www.ctan.org/tex-archive/language/japanese/BX/bxghost
 License:	mit
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bxghost.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bxghost.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/bxghost.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/bxghost.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The package provides two commands to help authors for documents
-in Japanese to insert proper xkanjiskips. It supports LuaTeX,
-XeTeX, pTeX, upTeX, and ApTeX (pTeX-ng).
+The package provides two commands to help authors for documents in
+Japanese to insert proper xkanjiskips. It supports LuaTeX, XeTeX, pTeX,
+upTeX, and ApTeX (pTeX-ng).
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/bxghost
-%doc %{_texmfdistdir}/doc/latex/bxghost
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
